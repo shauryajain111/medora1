@@ -1,17 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
+import EmergencyRequestForm from '../components/EmergencyRequestForm';
 import './Home.css';
 
 function Home() {
+  const { t } = useTranslation();
+
   return (
     <div className="home">
       <Header />
       <main className="home-main">
-        <h1>Get Urgent Medical Help at Home</h1>
-        <p>Trusted doctors and nurses available 24x7 near you.</p>
+        <h1>{t('heading')}</h1>
+        <p>{t('subtitle')}</p>
+
+        <EmergencyRequestForm />
+
         <div className="buttons">
-          <button className="primary">Request Emergency Doctor</button>
-          <button className="secondary">Schedule Appointment</button>
+          <Link to="/appointment">
+            <button className="secondary">{t('scheduleAppointment')}</button>
+          </Link>
         </div>
       </main>
     </div>

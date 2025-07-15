@@ -1,19 +1,25 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './Header.css';
 
-function Header({ onLanguageChange }) {
+function Header() {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <header className="header">
       <div className="logo">DoctorOnCall</div>
       <select
         className="language-select"
-        onChange={(e) => onLanguageChange(e.target.value)}
+        onChange={(e) => changeLanguage(e.target.value)}
+        defaultValue={i18n.language}
       >
         <option value="en">English</option>
-        <option value="hi">Hindi</option>
-        <option value="bn">Bengali</option>
-        <option value="ta">Tamil</option>
-        <option value="te">Telugu</option>
+        <option value="hi">हिन्दी</option>
+        <option value="pa">ਪੰਜਾਬੀ</option>
       </select>
     </header>
   );

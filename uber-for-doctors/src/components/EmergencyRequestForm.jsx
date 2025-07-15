@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './EmergencyRequestForm.css';
 
 function EmergencyRequestForm() {
@@ -11,6 +13,8 @@ function EmergencyRequestForm() {
   });
 
   const [recommendation, setRecommendation] = useState('');
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +24,6 @@ function EmergencyRequestForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulate AI recommendation
     let reco = '';
     if (formData.emergencyLevel === 'critical') {
       reco = 'Lie the patient down. Call for ambulance if unresponsive.';
@@ -31,14 +34,13 @@ function EmergencyRequestForm() {
     }
 
     setRecommendation(reco);
-
-    // TODO: Send formData to backend
     console.log('Form Submitted:', formData);
+    navigate('/status');
   };
 
   return (
     <div className="emergency-form-wrapper">
-      <h2>Request Emergency Doctor</h2>
+      <h2>{t('requestEmergency')}</h2>
       <form className="emergency-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -107,7 +109,7 @@ function EmergencyRequestForm() {
           </label>
         </div>
 
-        <button type="submit">Submit Request</button>
+        <button type="submit">{t('submitRequest')}</button>
       </form>
 
       {recommendation && (
