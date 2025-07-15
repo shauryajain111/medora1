@@ -5,11 +5,13 @@ import './RequestStatus.css';
 function RequestStatus() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [status, setStatus] = useState('searching'); // 'searching' or 'assigned'
+  const [status, setStatus] = useState('searching');
   const [doctor, setDoctor] = useState(null);
 
+  // In case user navigates here directly without data
   useEffect(() => {
     if (!location.state?.patient) {
+      console.warn('No patient data found. Redirecting to home.');
       navigate('/');
       return;
     }
@@ -32,9 +34,9 @@ function RequestStatus() {
     <div className="status-wrapper">
       {status === 'searching' && (
         <>
+          <div className="spinner"></div>
           <h2>Contacting doctors nearby...</h2>
           <p>Please wait while we connect you to the nearest available doctor.</p>
-          <div className="spinner"></div>
         </>
       )}
 
@@ -43,7 +45,7 @@ function RequestStatus() {
           <h2>Doctor is on the way!</h2>
           <div className="doctor-info">
             <img src={doctor.photo} alt={doctor.name} />
-            <div className="doctor-details">
+            <div>
               <h3>{doctor.name}</h3>
               <p>{doctor.specialty}</p>
               <p>{doctor.clinic}</p>
@@ -53,10 +55,10 @@ function RequestStatus() {
           <div className="recommendations">
             <h4>While the doctor is coming, follow these instructions:</h4>
             <ul>
-              <li>Keep the patient calm and comfortable.</li>
-              <li>Ensure good airflow in the room.</li>
-              <li>Collect any medical records.</li>
-              <li><em>[AI recommendations will appear here]</em></li>
+              <li>Keep the patient comfortable and calm.</li>
+              <li>Ensure good ventilation in the room.</li>
+              <li>Gather any medical records or prescriptions.</li>
+              <li><em>[AI Recommendations will appear here]</em></li>
             </ul>
           </div>
         </>

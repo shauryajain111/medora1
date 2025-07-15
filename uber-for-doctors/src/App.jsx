@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Appointment from './pages/Appointment';
 import RequestStatus from './components/RequestStatus';
-import Appointment from './pages/Appointment'; // <-- Import Appointment
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+
   return (
     <Router>
+      <Header
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/appointment" element={<Appointment />} />
         <Route path="/status" element={<RequestStatus />} />
-        <Route path="/appointment" element={<Appointment />} /> {/* Add this */}
+        <Route path="/about" element={<div style={{ padding: '40px', textAlign: 'center' }}>
+          <h2>About Us</h2>
+          <p>This app was built to help people quickly call medical professionals in emergencies.</p>
+        </div>} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

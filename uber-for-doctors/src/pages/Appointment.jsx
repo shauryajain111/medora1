@@ -6,45 +6,38 @@ function Appointment() {
     name: '',
     date: '',
     time: '',
-    doctor: 'Dr. Priya Sharma'
+    reason: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Appointment booked:', formData);
-    alert('Appointment successfully scheduled!');
+    console.log('Appointment data:', formData);
+    alert('Appointment booked successfully!');
+    setFormData({
+      name: '',
+      date: '',
+      time: '',
+      reason: ''
+    });
   };
 
   return (
     <div className="appointment-wrapper">
-      <h2>Schedule an Appointment</h2>
+      <h2>Book an Appointment</h2>
       <form className="appointment-form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
-          placeholder="Patient Name"
+          placeholder="Your Name"
           value={formData.name}
           onChange={handleChange}
           required
         />
-
-        <label className="label">Select Doctor:</label>
-        <select
-          name="doctor"
-          value={formData.doctor}
-          onChange={handleChange}
-        >
-          <option>Dr. Priya Sharma</option>
-          <option>Dr. Rahul Mehra</option>
-          <option>Dr. Aisha Khan</option>
-        </select>
-
-        <label className="label">Date:</label>
         <input
           type="date"
           name="date"
@@ -52,8 +45,6 @@ function Appointment() {
           onChange={handleChange}
           required
         />
-
-        <label className="label">Time:</label>
         <input
           type="time"
           name="time"
@@ -61,7 +52,14 @@ function Appointment() {
           onChange={handleChange}
           required
         />
-
+        <textarea
+          name="reason"
+          placeholder="Reason for Appointment"
+          value={formData.reason}
+          onChange={handleChange}
+          rows="3"
+          required
+        ></textarea>
         <button type="submit">Book Appointment</button>
       </form>
     </div>

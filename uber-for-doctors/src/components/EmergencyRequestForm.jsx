@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import './EmergencyRequestForm.css';
 
 function EmergencyRequestForm() {
@@ -12,35 +11,29 @@ function EmergencyRequestForm() {
     emergencyLevel: 'moderate'
   });
 
-  const [recommendation, setRecommendation] = useState('');
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let reco = '';
-    if (formData.emergencyLevel === 'critical') {
-      reco = 'Lie the patient down. Call for ambulance if unresponsive.';
-    } else if (formData.emergencyLevel === 'moderate') {
-      reco = 'Ensure patient is resting. Avoid exertion.';
-    } else {
-      reco = 'Monitor condition. Doctor will arrive shortly.';
-    }
+    const symptomRecord = {
+      timestamp: new Date().toISOString(),
+      name: formData.name,
+      symptoms: formData.symptoms
+    };
 
-    setRecommendation(reco);
-    console.log('Form Submitted:', formData);
-    navigate('/status');
+    console.log('SAVE THIS JSON TO FILE:', JSON.stringify(symptomRecord, null, 2));
+
+    navigate('/status', { state: { patient: formData } });
   };
 
   return (
     <div className="emergency-form-wrapper">
-      <h2>{t('requestEmergency')}</h2>
       <form className="emergency-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -67,9 +60,9 @@ function EmergencyRequestForm() {
           required
         />
         <textarea
-          name="symptoms"
+          name="chief_complaint"
           placeholder="Describe Symptoms"
-          value={formData.symptoms}
+          value={formData.chief_complaint}
           onChange={handleChange}
           rows="3"
           required
@@ -109,15 +102,8 @@ function EmergencyRequestForm() {
           </label>
         </div>
 
-        <button type="submit">{t('submitRequest')}</button>
+        <button type="submit">Submit Request</button>
       </form>
-
-      {recommendation && (
-        <div className="recommendation-box">
-          <strong>AI Recommendation:</strong>
-          <p>{recommendation}</p>
-        </div>
-      )}
     </div>
   );
 }
