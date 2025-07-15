@@ -16,13 +16,31 @@ function App() {
         setSelectedLanguage={setSelectedLanguage}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home selectedLanguage={selectedLanguage} />}
+        />
         <Route path="/appointment" element={<Appointment />} />
         <Route path="/status" element={<RequestStatus />} />
-        <Route path="/about" element={<div style={{ padding: '40px', textAlign: 'center' }}>
-          <h2>About Us</h2>
-          <p>This app was built to help people quickly call medical professionals in emergencies.</p>
-        </div>} />
+        <Route
+          path="/about"
+          element={
+            <div
+              style={{
+                padding: '20px',
+                maxWidth: '600px',
+                margin: '0 auto',
+                textAlign: 'center'
+              }}
+            >
+              <h2>About Us</h2>
+              <p>
+                This app helps people quickly call medical professionals in emergencies.
+                It was built by Team Silverhands for the Hack4Health Hackathon.
+              </p>
+            </div>
+          }
+        />
       </Routes>
       <Footer />
     </Router>
