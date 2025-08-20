@@ -1,57 +1,109 @@
-.appointment-wrapper {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #fff;
-  border-radius: 12px;
+.appointment-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
   border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.appointment-page h2 {
   text-align: center;
-  box-sizing: border-box;
+  margin-bottom: 1.5rem;
 }
 
-.appointment-wrapper h2 {
-  margin-bottom: 16px;
-  color: #333;
-  font-size: 1.4em;
+.form-section {
+  margin-bottom: 1.5rem;
 }
 
-.appointment-form input,
-.appointment-form textarea {
+.form-section label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-section select,
+.form-section input,
+.form-section textarea {
   width: 100%;
-  margin-bottom: 12px;
-  padding: 14px; /* Thicker padding for bigger touch area */
+  padding: 0.65rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.doctors-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.doctor-card {
+  display: flex;
+  align-items: center;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-sizing: border-box;
-  font-size: 1.05em;
+  background: #fafafa;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.appointment-form button {
-  padding: 14px;
-  background-color: #333;
+.doctor-card:hover {
+  background: #f0f0f0;
+}
+
+.doctor-card.selected {
+  border: 2px solid #007bff;
+  background: #e6f0ff;
+}
+
+.doctor-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+.form-section h3 {
+  margin-top: 1.5rem;
+}
+
+.form-section button {
+  background: #333;
   color: #fff;
+  padding: 0.75rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1rem;
+  transition: background 0.3s ease;
 }
 
+.form-section button:hover {
+  background: #555;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
 @media (max-width: 600px) {
-  .appointment-wrapper {
-    margin: 20px auto;
-    padding: 20px;
+  .doctor-card {
+    flex-direction: column;
+    text-align: center;
   }
-  .appointment-wrapper h2 {
-    font-size: 1.6em;
-  }
-  .appointment-form input,
-  .appointment-form textarea {
-    padding: 16px;
-    font-size: 1.2em;
-  }
-  .appointment-form button {
-    font-size: 1.2em;
-    padding: 16px;
+
+  .doctor-card img {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
   }
 }

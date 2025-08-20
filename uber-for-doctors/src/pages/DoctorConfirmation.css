@@ -1,0 +1,22 @@
+.confirmation-page {
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.doctor-info {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.doctor-info img {
+  width: 150px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.doctor-info h3 {
+  margin: 10px 0 4px;
+}

@@ -5,6 +5,7 @@ import Appointment from './pages/Appointment';
 import RequestStatus from './components/RequestStatus';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import DoctorConfirmation from './pages/DoctorConfirmation';
 
 function App() {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -21,6 +22,7 @@ function App() {
           element={<Home selectedLanguage={selectedLanguage} />}
         />
         <Route path="/appointment" element={<Appointment />} />
+        <Route path="/doctor-confirmation" element={<DoctorConfirmation />} />
         <Route path="/status" element={<RequestStatus />} />
         <Route
           path="/about"
