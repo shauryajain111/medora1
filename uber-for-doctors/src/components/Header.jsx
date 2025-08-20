@@ -6,7 +6,7 @@ function Header({ selectedLanguage, setSelectedLanguage }) {
   return (
     <header className="app-header">
       <div className="header-left">
-        <h1 className="logo">DoctorOnCall</h1>
+        <h1 className="logo">Medora- Doctor On Your Doorsteps</h1>
       </div>
       <nav className="nav-links">
         <Link to="/">Home</Link>
